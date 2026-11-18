@@ -64,9 +64,9 @@
       "link": "https://fetuccini.bandcamp.com/album/ballinstra-e"
     },
     {
-      "title": "bow bow bo",
-      "link": "grrrrr",
-      "artwork": "assets/images/uploads/cover.jpg"
+      "artwork": "assets/images/uploads/cover.jpg",
+      "title": "banjo",
+      "link": ""
     }
   ]
 }

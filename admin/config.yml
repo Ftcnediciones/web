@@ -1,0 +1,117 @@
+backend:
+  name: turbo-github
+  turbo_site_id: 76e27ab1-74fb-4f55-acc2-927fba59a520
+  branch: main
+
+media_folder: assets/images/uploads
+public_folder: assets/images/uploads
+
+collections:
+  - name: releases
+    label: Releases
+    files:
+      - name: releases
+        label: Release entries
+        file: content/releases.json
+        fields:
+          - name: items
+            label: Releases
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Display title (Artist – Release Title), widget: string }
+              - { name: artwork, label: Cover artwork (1000 x 1000 / 72ppi / <300kb), widget: image }
+              - { name: link, label: Listening or purchase link, widget: string, required: false }
+
+  - name: events
+    label: Events
+    files:
+      - name: events
+        label: Event entries
+        file: content/events.json
+        fields:
+          - name: items
+            label: Events
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Event title, widget: string }
+              - { name: location, label: Venue and location, widget: string }
+              - { name: date, label: Date (MON YYYY), widget: string }
+              - { name: poster, label: Poster image (595 × 842 / 72ppi / <300kb), widget: image }
+              - { name: mobileTitle, label: Short mobile title (only necessary if the full title is too long), widget: string, required: false }
+              - { name: mobileMeta, label: Short mobile location and date (City MON YYYY), widget: string, required: false }
+
+  - name: merch
+    label: Merch
+    files:
+      - name: merch
+        label: Merch entries
+        file: content/merch.json
+        fields:
+          - name: items
+            label: Items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Product name, widget: string }
+              - { name: image, label: Main product image (700 × 700 / png), widget: image }
+              - { name: backImage, label: Alternate image / Back image, widget: image, required: false }
+              - { name: alt, label: Image description, widget: string, required: false }
+              - { name: backAlt, label: Alternate image description, widget: string, required: false }
+              - { name: link, label: Shop link, widget: string, required: false }
+              - { name: soldOut, label: Sold out, widget: boolean, default: false }
+
+  - name: mixes
+    label: Mixes
+    files:
+      - name: mixes
+        label: Mix entries
+        file: content/mixes.json
+        fields:
+          - name: items
+            label: Mixes
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Mix title, widget: string }
+              - { name: source, label: Radio station or platform (add stars to make it 14 characters), widget: string }
+              - { name: date, label: Date (MON YYYY), widget: string }
+              - { name: link, label: Listen link, widget: string }
+
+  - name: editorial
+    label: Editorial
+    files:
+      - name: editorial
+        label: Editorial entries
+        file: content/editorial.json
+        fields:
+          - name: items
+            label: Entries
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: Entry title, widget: string }
+              - name: pages
+                label: Scans, in display order 
+                widget: list
+                summary: "{{fields.alt}}"
+                fields:
+                  - { name: image, label: Scan or image (use indesign template /2953 × 2480 / 300ppi / <1mb), widget: image }
+                  - { name: alt, label: Image description ( front/spread#/back), widget: string }
+
+  - name: site-images
+    label: Site images
+    files:
+      - name: site-images
+        label: Site images
+        file: content/site-images.json
+        fields:
+          - { name: homepageImage, label: Homepage image  (needs to be 433 × 771), widget: image }
+          - { name: aboutImage, label: About image (needs to be 433 × 771), widget: image }
+          - name: gallery
+            label: Camera roll
+            widget: list
+            summary: "{{fields.image}}"
+            fields:
+              - { name: image, label: Camera-roll image, widget: image }

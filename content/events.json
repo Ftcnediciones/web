@@ -1,6 +1,12 @@
 {
   "items": [
     {
+      "title": "Musik Mattin",
+      "location": "Nave Verbena, Madrid",
+      "date": "NOV 2026",
+      "poster": "assets/images/uploads/musik_mattin_final.jpg"
+    },
+    {
       "title": "Tour Sofoquina x F.T.C.N",
       "location": "Spain",
       "date": "OCT 2026",

@@ -777,7 +777,7 @@ body.editorial-page {
   width: calc(100vw - 20px);
   max-width: calc(100vw - 20px);
   min-height: calc(100vh - 40px);
-  margin: 0 10px;
+  margin: 0 20px;
 }
 
 body:has(.mixes-content) {
@@ -940,7 +940,7 @@ body:has(.mixes-content) {
     height: 100%;
     max-height: none;
     object-fit: contain;
-    margin: 0 auto;
+    margin: 0 auto 20px;
   }
 
   .event-caption {

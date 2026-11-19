@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "title": "Sofoquina - Versiones Variopintas",
+      "title": "Sofoquina – Versiones Variopintas",
       "artwork": "assets/images/uploads/cover_sofo.jpg",
       "link": "https://fetuccini.bandcamp.com/album/versiones-variopintas"
     },
@@ -62,11 +62,6 @@
       "title": "Der Fetucinis – Ballinstrasse",
       "artwork": "assets/images/uploads/der_fetucinis_final-copia.jpg",
       "link": "https://fetuccini.bandcamp.com/album/ballinstra-e"
-    },
-    {
-      "title": "bon patin den kas",
-      "link": "grrrr",
-      "artwork": "assets/images/uploads/cover.jpg"
     }
   ]
 }

@@ -24,6 +24,10 @@ body {
   transform: translate(-50%, -50%);
 }
 
+img.is-broken {
+  display: none !important;
+}
+
 @media (min-width: 901px) {
   .stamped-logo {
     width: min(95px, 13.6vw);
@@ -126,6 +130,15 @@ h1 a:not(.logo-link):hover {
   touch-action: none;
   user-select: none;
   -webkit-user-drag: none;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.homepage-gallery-image.is-loaded {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .homepage-gallery-image.is-dragging {

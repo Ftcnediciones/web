@@ -9,9 +9,21 @@ let galleryCenter = null;
 let dragState = null;
 let suppressNextClick = false;
 let galleryAutoCycle = true;
+const brokenGalleryImages = new Set();
+
+document.addEventListener(
+  "error",
+  (event) => {
+    if (event.target instanceof HTMLImageElement) {
+      event.target.classList.add("is-broken");
+      event.target.setAttribute("aria-hidden", "true");
+    }
+  },
+  true,
+);
 
 galleryImage.className = "homepage-gallery-image";
-galleryImage.alt = "FTCN gallery";
+galleryImage.alt = "";
 galleryImage.draggable = false;
 document.body.append(galleryImage);
 
@@ -83,21 +95,47 @@ const updateGalleryPosition = (left, top) => {
 
 const showNextGalleryImage = () => {
   if (!galleryImages.length) return;
-  currentGalleryImage = (currentGalleryImage + 1) % galleryOrder.length;
-  galleryImage.src = galleryImages[galleryOrder[currentGalleryImage]];
+  for (let attempt = 0; attempt < galleryOrder.length; attempt += 1) {
+    currentGalleryImage = (currentGalleryImage + 1) % galleryOrder.length;
+    const imageUrl = galleryImages[galleryOrder[currentGalleryImage]];
+    if (!brokenGalleryImages.has(imageUrl)) {
+      galleryImage.classList.remove("is-loaded");
+      galleryImage.src = imageUrl;
+      return;
+    }
+  }
+  galleryImage.classList.remove("is-loaded");
 };
 
 const showInitialGalleryImage = () => {
-  galleryImage.src = galleryImages[galleryOrder[currentGalleryImage]];
+  for (let attempt = 0; attempt < galleryOrder.length; attempt += 1) {
+    const imageUrl = galleryImages[galleryOrder[currentGalleryImage]];
+    if (!brokenGalleryImages.has(imageUrl)) {
+      galleryImage.classList.remove("is-loaded");
+      galleryImage.src = imageUrl;
+      return;
+    }
+    currentGalleryImage = (currentGalleryImage + 1) % galleryOrder.length;
+  }
+  galleryImage.classList.remove("is-loaded");
 };
 
 galleryImage.addEventListener("load", () => {
+  galleryImage.classList.add("is-loaded");
   if (!hasPositionedGalleryImage) {
     positionGalleryImage();
     hasPositionedGalleryImage = true;
   } else {
     keepGalleryImageCentered();
   }
+});
+galleryImage.addEventListener("error", () => {
+  if (galleryImage.currentSrc || galleryImage.src) {
+    brokenGalleryImages.add(galleryImage.src);
+  }
+  galleryImage.classList.remove("is-loaded");
+  galleryImage.removeAttribute("src");
+  showNextGalleryImage();
 });
 galleryImage.addEventListener("pointerdown", (event) => {
   if (!event.isPrimary) return;
